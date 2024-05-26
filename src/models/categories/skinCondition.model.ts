@@ -1,9 +1,17 @@
 import mongoose from "mongoose";
 
-const skinConditionCategorySchema = new mongoose.Schema({
+const skinConditionSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  slug: { type: String, required: true },
-  // products: [{ type: mongoose.Types.ObjectId, ref: 'SkinConditionProduct' }]
+  slug: { type: String },
 });
 
-export const SkinConditionCategory = mongoose.model('SkinConditionCategory', skinConditionCategorySchema);
+// Pre-save hook to generate the slug from the title
+skinConditionSchema.pre("save", function (next) {
+  if (!this.isModified("name")) return next();
+
+  // Generate the slug from the title
+  this.slug = this.name!.toLowerCase().split(" ").join("-");
+  next();
+});
+
+export const SkinConditionCategory = mongoose.model("SkinConditionCategory", skinConditionSchema);

@@ -5,6 +5,8 @@ import { EyesMakeupCategory } from "../models/categories/eyesMakeup.model";
 import { LipsMakeupCategory } from "../models/categories/lipsMakeup.model";
 import { CheekMakeupSchemaType, EyesMakeupSchemaType, FeaturedSchemaType, LipsMakeupSchemaType } from "../schema/category.schema";
 import { FeaturedCategory } from "../models/categories/featured.model";
+import { SkinCareCategory } from "../models/categories/skinCare.model";
+import { SkinConditionCategory } from "../models/categories/skinCondition.model";
 
 export const createCheekMakeupCategoryHandler = async (
   req: Request<{}, {}, CheekMakeupSchemaType["body"]>,
@@ -89,6 +91,38 @@ export const createFeaturedCategoryHandler = async (
   }
 };
 
+export const createSkinCareCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { name } = req.body;
+
+    const category = await createCategory(name, SkinCareCategory);
+
+    res.status(201).json({
+      success: true,
+      category,
+    });
+  } catch (error) {
+    console.log("cheekMakeupCategoryHandler", error);
+    next(error);
+  }
+}
+
+export const createSkinConditionCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { name } = req.body;
+
+    const category = await createCategory(name, SkinConditionCategory);
+
+    res.status(201).json({
+      success: true,
+      category,
+    });
+  } catch (error) {
+    console.log("cheekMakeupCategoryHandler", error);
+    next(error);
+  }
+}
+
 export const getCheekMakeupCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await getCategory(CheekMakeupCategory);
@@ -133,3 +167,48 @@ export const getEyesMakeupCategoryHandler = async (req: Request, res: Response, 
     next(error);
   }
 };
+
+export const getFeaturedCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const category = await getCategory(FeaturedCategory);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getCheekMakeupCategoryHandler", error);
+    next(error);
+  }
+};
+
+export const getSkinCareCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const category = await getCategory(SkinCareCategory);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getCheekMakeupCategoryHandler", error);
+    next(error);
+  }
+};
+
+export const getSkinConditionCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const category = await getCategory(SkinConditionCategory);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getCheekMakeupCategoryHandler", error);
+    next(error);
+  }
+}
