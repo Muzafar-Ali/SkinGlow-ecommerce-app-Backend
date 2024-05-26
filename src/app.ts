@@ -35,7 +35,7 @@ app.use("/api/v1/makeup", makeupRoute)
 app.use("/api/v1/skincare", skincareRoute)
 
 // category routes
-app.use("/api/v1/makeup/category/", makeupCategoryRoute)
+app.use("/api/v1/makeup/category", makeupCategoryRoute)
 app.use("/api/v1/skincare/category", skincareCategoryRoute)
 app.use("/api/v1/category", featuredCategoryRoute)
 

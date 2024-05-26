@@ -17,7 +17,7 @@ router.post("/eyes/create", requestValidator(EyesMakeupSchema), createEyesMakeup
 router.post("/lips/create", requestValidator(LipsMakeupSchema), createLipsMakeupCategoryHandler);
 
 router.get("/cheek/all", getCheekMakeupCategoryHandler);
-router.get("/lip/all", getLipsMakeupCategoryHandler);
+router.get("/lips/all", getLipsMakeupCategoryHandler);
 router.get("/eyes/all", getEyesMakeupCategoryHandler);
 
 export default router;
