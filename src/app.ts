@@ -9,7 +9,8 @@ import cors from 'cors';
 import makeupRoute from './routes/makeupProduct.routes'
 import skincareRoute from './routes/skincareProduct.routes';
 import makeupCategoryRoute from './routes/categoryMakeup.routes';
-import skincareCategoryRoutes from './routes/categorySkincare.routes';
+import skincareCategoryRoute from './routes/categorySkincare.routes';
+import featuredCategoryRoute from './routes/categoryFeatured.routes';
 
 const app = express();
 app.use(express.json());
@@ -27,11 +28,16 @@ app.get('/health', (req, res) => {
   })
 });
 
-// Using Routes     
+// Using Routes  
+   
+// product routes
 app.use("/api/v1/makeup", makeupRoute)
 app.use("/api/v1/skincare", skincareRoute)
+
+// category routes
 app.use("/api/v1/makeup/category/", makeupCategoryRoute)
-app.use("/api/v1/skincare/category", skincareCategoryRoutes)
+app.use("/api/v1/skincare/category", skincareCategoryRoute)
+app.use("/api/v1/category", featuredCategoryRoute)
 
 
 app.use(errorMiddleware)

@@ -18,14 +18,17 @@ const makeupSchema = new mongoose.Schema(
       cheekMakeupCategory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "CheekMakeupCategory",
+        required: false,
       },
       eyesMakeupCategory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "EyesMakeupCategory",
+        required: false,
       },
       lipsMakeupCategory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "LipsMakeupCategory",
+        required: false,
       },
       featuredCategory: {
         type: mongoose.Schema.Types.ObjectId,

@@ -133,3 +133,18 @@ export const getEyesMakeupCategoryHandler = async (req: Request, res: Response, 
     next(error);
   }
 };
+
+export const getFeaturedCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const category = await getCategory(FeaturedCategory);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getCheekMakeupCategoryHandler", error);
+    next(error);
+  }
+};
