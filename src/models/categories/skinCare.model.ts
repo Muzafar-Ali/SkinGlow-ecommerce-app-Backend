@@ -1,8 +1,14 @@
 import mongoose from "mongoose";
 
 const skinCareSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  slug: { type: String },
+  name: { 
+    type: String, 
+    required: true, 
+    unique: true 
+  },
+  slug: { 
+    type: String 
+  }, 
 });
 
 // Pre-save hook to generate the slug from the title

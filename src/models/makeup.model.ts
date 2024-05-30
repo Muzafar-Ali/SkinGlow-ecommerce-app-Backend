@@ -1,18 +1,53 @@
 import mongoose from "mongoose";
 import { MakeupDocumentType } from "../types/types";
+import { string } from "zod";
 
 const makeupSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    slug: { type: String },
-    tagline: { type: String, required: true },
-    price: { type: Number, required: true },
-    images: { type: [String], required: true },
+    title: { 
+      type: String, 
+      required: true 
+    },
+    slug: { 
+      type: String 
+    },
+    tagline: { 
+      type: String, 
+      required: true 
+    },
+    price: { 
+      type: Number, 
+      required: true 
+    },
+    thumbnail: { 
+      type: String, 
+      required: true 
+    },
+    images: { 
+      type: [String], 
+      required: true 
+    },
+    stock: { 
+      type: Number, 
+      required: true 
+    },
     productDetails: {
-      description: { type: String, required: true },
-      ingredients: { type: String, required: true },
-      howToApply: { type: String, required: true },
-      features: { type: String, required: true },
+      description: { 
+        type: String, 
+        required: true 
+      },
+      ingredients: { 
+        type: String, 
+        required: true 
+      },
+      howToApply: { 
+        type: String, 
+        required: true 
+      },
+      features: { 
+        type: String, 
+        required: true 
+      },
     },
     categories: {
       cheekMakeupCategory: {
