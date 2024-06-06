@@ -33,6 +33,7 @@ export const FeaturedSchema = z.object({
       required_error: "Name is required",
       invalid_type_error: "Name must be a string",
     }).min(1),
+    products: z.array(z.string()).optional(),
   }),
 });
 

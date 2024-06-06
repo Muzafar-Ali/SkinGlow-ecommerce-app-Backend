@@ -10,9 +10,10 @@ const CategoriesSchema = z.object({
       invalid_type_error: "Skin care category must be a string",
     }).optional(),
     featuredCategory: z.string({
-      invalid_type_error: "Lips makeup category must be a string",
+      invalid_type_error: "Featured category must be a string",
     }).optional(),
 });
+
 
 export const SkincareSchema = z.object({
   body: z.object({
@@ -27,9 +28,14 @@ export const SkincareSchema = z.object({
       }).trim(),
 
     price: z.number({
-        required_error: "Price is required",
-        invalid_type_error: "Price must be a number",
-      }).positive(),
+      required_error: "Price is required",
+      invalid_type_error: "Price must be a number",
+    }).positive(),
+
+    thumbnail: z.string({
+      required_error: "Thumbnail is required",
+      invalid_type_error: "Thumbnail must be a string",
+    }),
 
     images: z.array(
       z.string({
@@ -37,6 +43,10 @@ export const SkincareSchema = z.object({
         invalid_type_error: "Each image link must be a string",
       })
     ),
+    stock: z.number({
+      required_error: "Stock is required",
+      invalid_type_error: "Stock must be a number",
+    }).positive(),
 
     productDetails: ProductDetailsSchema,
     categories: CategoriesSchema,

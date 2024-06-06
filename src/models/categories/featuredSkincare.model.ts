@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { CheekMakeupCategoryType, FeaturedCategoryType } from "../../types/types";
+import { FeaturedCategoryType } from "../../types/types";
 
-const featuredSchema = new mongoose.Schema({
+const featuredSkincareSchema = new mongoose.Schema({
   name: { 
     type: String, 
     required: true, 
@@ -10,10 +10,15 @@ const featuredSchema = new mongoose.Schema({
   slug: { 
     type: String 
   }, 
+  products: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "SkinCareProduct",
+    required: false
+  }
 });
   
   // Pre-save hook to generate the slug from the title
-  featuredSchema.pre("save", function (next) {
+  featuredSkincareSchema.pre("save", function (next) {
     if (!this.isModified("name")) return next(); // Skip if title hasn't changed
   
     // Generate the slug from the title
@@ -21,4 +26,4 @@ const featuredSchema = new mongoose.Schema({
     next();
   });
 
-export const FeaturedCategory = mongoose.model<FeaturedCategoryType>('FeaturedCategory', featuredSchema);
+export const FeaturedCategorySkincare = mongoose.model<FeaturedCategoryType>('FeaturedCategorySkincare', featuredSkincareSchema);

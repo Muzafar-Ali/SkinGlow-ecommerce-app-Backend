@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const skinCareSchema = new mongoose.Schema({
+const skincareSchema = new mongoose.Schema({
   name: { 
     type: String, 
     required: true, 
@@ -12,7 +12,7 @@ const skinCareSchema = new mongoose.Schema({
 });
 
 // Pre-save hook to generate the slug from the title
-skinCareSchema.pre("save", function (next) {
+skincareSchema.pre("save", function (next) {
   if (!this.isModified("name")) return next();
   
   // Generate the slug from the title
@@ -20,4 +20,4 @@ skinCareSchema.pre("save", function (next) {
   next();
 });
 
-export const SkinCareCategory = mongoose.model('SkinCareCategory', skinCareSchema);
+export const SkincareCategory = mongoose.model('SkincareCategory', skincareSchema);

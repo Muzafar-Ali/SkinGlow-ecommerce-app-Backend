@@ -78,9 +78,11 @@ export type EyesMakeupCategoryType = mongoose.Document & {
 export type LipsMakeupCategoryType = mongoose.Document & {
   name: string;
   slug?: string;
+  
 }
 
 export type FeaturedCategoryType = mongoose.Document & {
   name: string;
   slug?: string;
+  products: string[];
 }

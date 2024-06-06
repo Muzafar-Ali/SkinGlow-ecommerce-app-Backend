@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 import config from "../config/config";
 import { CheekMakeupCategory } from "../models/categories/cheekMakeup.model";
 import { EyesMakeupCategory } from "../models/categories/eyesMakeup.model";
@@ -7,10 +7,14 @@ import { MakeupProduct } from "../models/makeup.model";
 import { MakeupDocumentInputType } from "../types/types";
 import ErrorHandler from "../utils/errorClass";
 import { MakeupSchemaType } from "../schema/makeupProduct.schema";
+import { FeaturedCategory } from "../models/categories/featuredMakeup.model";
 
 export const createMakeupProduct = async (requestInput: MakeupSchemaType["body"]) => {
   try {
     const product = await MakeupProduct.create(requestInput);
+    const id = requestInput.categories.featuredCategory;
+    const cat = await FeaturedCategory.findOne({ _id: id });
+    await FeaturedCategory.findByIdAndUpdate(id, { $push: { products: product._id } });
 
     if (!product) throw new Error("Product not created");
 

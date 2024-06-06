@@ -5,6 +5,7 @@ import { MakeupSchemaType } from "../schema/makeupProduct.schema";
 import ErrorHandler from "../utils/errorClass";
 import { GetMakeupProductByCategorySchemaType } from "../schema/query.schema";
 
+// CREATE PRODUCTS
 export const createMakeupProductHandler = async (
   req: Request<{}, {}, MakeupSchemaType["body"]>,
   res: Response,
@@ -23,8 +24,8 @@ export const createMakeupProductHandler = async (
   }
 };
 
-
-export const getMakeupProductByCategoryHandler = async (req: Request<{}, {}, {}, GetMakeupProductByCategorySchemaType["qery"]>, res: Response, next: NextFunction) => {
+// GET PRODUCT BY CATEGORY
+export const getMakeupProductByCategoryHandler = async (req: Request<{}, {}, {}, GetMakeupProductByCategorySchemaType["query"]>, res: Response, next: NextFunction) => {
   try {
 
     const { cat, val} = req.query;
@@ -57,6 +58,7 @@ export const getMakeupProductByCategoryHandler = async (req: Request<{}, {}, {},
   }
 };
 
+// GET ALL PRODUCTS
 export const getAllMakeupProductsHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const makeupProduct = await MakeupProduct.find();

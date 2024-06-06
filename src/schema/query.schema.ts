@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const getMakeupProductByCategorySchema = z.object({
-  qery: z.object({
+  query: z.object({
     cat: z.string({
       required_error: "Category is required",
       invalid_type_error: "Category must be a string",
