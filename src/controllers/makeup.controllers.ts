@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { createMakeupProduct, getCategoryModel } from "../services/makeupProduct.service";
-import { MakeupProduct } from "../models/makeup.model";
+import { MakeupProduct } from "../models/products/makeup.model";
 import { MakeupSchemaType } from "../schema/makeupProduct.schema";
 import ErrorHandler from "../utils/errorClass";
 import { GetMakeupProductByCategorySchemaType } from "../schema/query.schema";

@@ -1,6 +1,4 @@
 import dotenv from "dotenv";
-import { CheekMakeupCategory } from "../models/categories/cheekMakeup.model";
-import { EyesMakeupCategory } from "../models/categories/eyesMakeup.model";
 dotenv.config();
 
 const config = {

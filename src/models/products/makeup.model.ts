@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { MakeupDocumentType } from "../types/types";
+import { MakeupDocumentType } from "../../types/types";
 
-const skinCareSchema = new mongoose.Schema(
+const makeupSchema = new mongoose.Schema(
   {
     title: { 
       type: String, 
@@ -49,19 +49,24 @@ const skinCareSchema = new mongoose.Schema(
       },
     },
     categories: {
-      skinConditionCategory: {
+      cheekMakeupCategory: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "SkinCareConditionCategory",
+        ref: "CheekMakeupCategory",
         required: false,
       },
-      skinCareCategory: {
+      eyesMakeupCategory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "EyesMakeupCategory",
         required: false,
       },
+      lipsMakeupCategory: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "LipsMakeupCategory",
+        required: false,
+      },
       featuredCategory: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "FeaturedCategory",
+        ref: "FeaturedCategoryMakeup",
         required: false,
       },
     },
@@ -72,7 +77,7 @@ const skinCareSchema = new mongoose.Schema(
 );
 
 // Pre-save hook to generate the slug from the title
-skinCareSchema.pre("save", function (next) {
+makeupSchema.pre("save", function (next) {
   if (!this.isModified("title")) return next(); // Skip if title hasn't changed
 
   // Generate the slug from the title
@@ -80,4 +85,4 @@ skinCareSchema.pre("save", function (next) {
   next();
 });
 
-export const SkinCareProduct = mongoose.model<MakeupDocumentType>("SkinCareProduct", skinCareSchema);
+export const MakeupProduct = mongoose.model<MakeupDocumentType>("MakeupProduct", makeupSchema);

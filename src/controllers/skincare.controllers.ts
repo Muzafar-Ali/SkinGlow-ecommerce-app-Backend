@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { createSkincareProduct } from "../services/skincareProduct.services";
 import { SkincareSchemaType } from "../schema/skincareProduct.schema";
-import { SkinCareProduct } from "../models/skincare.model";
+import { SkinCareProduct } from "../models/products/skincare.model";
 
 // CREATE PRODUCT
 export const createSkincareProductHandler = async (

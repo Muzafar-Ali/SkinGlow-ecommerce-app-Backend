@@ -12,7 +12,8 @@ import {
 import { SkinConditionCategory } from "../models/categories/skinCondition.model";
 import { FeaturedCategoryMakeup } from "../models/categories/featuredMakeup.model";
 import { FeaturedCategorySkincare } from "../models/categories/featuredSkincare.model";
-import { SkincareCategory } from "../models/categories/skinCare.model";
+import { SkincareCategory } from "../models/categories/skincare.model";
+
 
 // CREATE CHEEK MAKEUP CATEGORY
 export const createCheekMakeupCategoryHandler = async (
