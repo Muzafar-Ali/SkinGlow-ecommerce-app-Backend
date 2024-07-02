@@ -7,13 +7,22 @@ import ErrorHandler from "../utils/errorClass";
 import { MakeupSchemaType } from "../schema/makeupProduct.schema";
 import { FeaturedCategoryMakeup } from "../models/categories/featuredMakeup.model";
 
-export const createMakeupProduct = async (requestInput: MakeupSchemaType["body"]) => {
+export const createMakeupProduct = async (
+  requestInput: MakeupSchemaType["body"],
+  thumbnail: string | undefined,
+  images: (string | undefined)[]
+) => {
   try {
     const featureCatId = requestInput.categories?.featuredCategory ?? ""
     
     // Creates a new makeup product
     if(!featureCatId){
-      const product = await MakeupProduct.create(requestInput);
+      const product = await MakeupProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+      
       if (!product) throw new Error("Product not created");
 
       return product;
@@ -21,7 +30,12 @@ export const createMakeupProduct = async (requestInput: MakeupSchemaType["body"]
 
     // Creates a new makeup product and adds it to the featured category
     if(featureCatId){
-      const product = await MakeupProduct.create(requestInput);
+      const product = await MakeupProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+      
       if (!product) throw new Error("Product not created");
       
       const result = await FeaturedCategoryMakeup.findByIdAndUpdate(

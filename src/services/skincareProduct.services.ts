@@ -2,13 +2,22 @@ import { FeaturedCategorySkincare } from "../models/categories/featuredSkincare.
 import { SkinCareProduct } from "../models/products/skincare.model";
 import { SkincareSchemaType } from "../schema/skincareProduct.schema";
 
-export const createSkincareProduct = async (requestInput: SkincareSchemaType["body"]) => {
+export const createSkincareProduct = async (
+  requestInput: SkincareSchemaType["body"],
+  thumbnail: string | undefined,
+  images: (string | undefined)[]
+) => {
   try {
     const featureCatId = requestInput.categories?.featuredCategory ?? ""
     
     // Creates a new makeup product
     if(!featureCatId){
-      const product = await SkinCareProduct.create(requestInput);
+      const product = await SkinCareProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+      
       if (!product) throw new Error("Product not created");
 
       return product;
@@ -16,7 +25,12 @@ export const createSkincareProduct = async (requestInput: SkincareSchemaType["bo
 
     // Creates a new makeup product and adds it to the featured category
     if(featureCatId){
-      const product = await SkinCareProduct.create(requestInput);
+      const product = await SkinCareProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+      
       if (!product) throw new Error("Product not created");
       
       const result = await FeaturedCategorySkincare.findByIdAndUpdate(

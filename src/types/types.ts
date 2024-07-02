@@ -1,4 +1,6 @@
+import { Request } from "express";
 import mongoose from "mongoose";
+import Multer from "multer"
 
 export type MakeupDocumentInputType = mongoose.Document & {
   title: string;

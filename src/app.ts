@@ -1,23 +1,26 @@
 import express from 'express'
-import { connectDB } from './utils/helper';
 import morgan from 'morgan';
-import { errorMiddleware } from './middlewares/error.middleware';
 import cors from 'cors';
+import { errorMiddleware } from './middlewares/error.middleware';
+import { connectDB } from './utils/connectDB';
 
-// importing routes
+// Importing routes
 import makeupRoute from './routes/makeupProduct.routes'
 import skincareRoute from './routes/skincareProduct.routes';
 import makeupCategoryRoute from './routes/categoryMakeup.routes';
 import skincareCategoryRoute from './routes/categorySkincare.routes';
+import config from './config/config';
 
 const app = express();
+
+// Middlewares
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(morgan("dev"))
 
-const port = 4000;
+const port = config.port || 4000;
 
 app.get('/health', (req, res) => {
   res.status(200).json({
@@ -25,17 +28,17 @@ app.get('/health', (req, res) => {
     message: 'Runnig succesfully'
   })
 });
-
-// Using Routes  
    
+
 // product routes
-app.use("/api/v1/makeup", makeupRoute)
-app.use("/api/v1/skincare", skincareRoute)
+app.use("/v1/makeup", makeupRoute)
+app.use("/v1/skincare", skincareRoute)
 
 // category routes
-app.use("/api/v1/makeup/category", makeupCategoryRoute)
-app.use("/api/v1/skincare/category", skincareCategoryRoute)
+app.use("/v1/makeup/category", makeupCategoryRoute)
+app.use("/v1/skincare/category", skincareCategoryRoute)
 
+// Error middleware
 app.use(errorMiddleware)
 
 app.listen(port, async () => {

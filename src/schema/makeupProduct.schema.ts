@@ -1,4 +1,3 @@
-import { title } from "process";
 import z from "zod";
 
 export const ProductDetailsSchema = z.object({
@@ -52,17 +51,17 @@ export const MakeupSchema = z.object({
       invalid_type_error: "Price must be a number",
     }).positive(),
     
-    thumbnail: z.string({
-      required_error: "Thumbnail is required",
-      invalid_type_error: "Thumbnail must be a string",
-    }),
+    // thumbnail: z.string({
+    //   required_error: "Thumbnail is required",
+    //   invalid_type_error: "Thumbnail must be a string",
+    // }),
 
-    images: z.array(
-      z.string({
-        required_error: "Images are required",
-        invalid_type_error: "Each image link must be a string",
-      })
-    ),
+    // images: z.array(
+    //   z.string({
+    //     required_error: "Images are required",
+    //     invalid_type_error: "Each image link must be a string",
+    //   })
+    // ),
     stock: z.number({
       required_error: "Stock is required",
       invalid_type_error: "Stock must be a number",
