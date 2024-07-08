@@ -109,13 +109,28 @@ export const getAllMakeupProductsHandler = async (req: Request, res: Response, n
   }
 }
 
+// GET SINGLE PRODUCT
+export const getSingleMakeupProductHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {  
+    const { slug } = req.params;
 
+    const makeupProduct = await MakeupProduct.find({slug: slug});
+
+    if (!makeupProduct) return next(new ErrorHandler(404, "Product not found"));
+
+    res.status(200).json({
+      success: true,
+      makeupProduct,
+    });
+  } catch (error) {
+    console.log("getSingleProductHandler error: ", error);
+    next(error);
+  }
+}
+
+// UPLOAD IMAGE 
 export const uploadImagesHanlder = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    
-
-
-
     res.status(201).json({
       success: true,
       message: "Images uploaded successfuly",

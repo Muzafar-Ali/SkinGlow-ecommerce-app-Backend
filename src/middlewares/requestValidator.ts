@@ -8,7 +8,7 @@ function requestValidator(schema: AnyZodObject) {
   return function (req: Request, res: Response, next: NextFunction) {
     try {
       convertFormDataToNumber(req.body);
-
+    
       // Parse JSON string in categories to satisify zod validation
       try {
         const parsedCategories = JSON.parse(req.body.categories || "{}"); // Handle empty categories

@@ -10,5 +10,4 @@ router.post("/create", upload, requestValidator(SkincareSchema), createSkincareP
 router.get("/all", getAllSkincareProductHandler);
 router.get("/collection", getSkincareProductCollectionHandler);
 
-
 export default router;
