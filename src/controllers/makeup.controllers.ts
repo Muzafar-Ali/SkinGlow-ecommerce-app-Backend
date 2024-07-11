@@ -113,11 +113,29 @@ export const getAllMakeupProductsHandler = async (req: Request, res: Response, n
 export const getSingleMakeupProductHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {  
     const { slug } = req.params;
+    
+    const makeupProduct = await MakeupProduct.find({slug: slug}) 
+    .populate('categories.cheekMakeupCategory')
+    .populate('categories.eyesMakeupCategory')
+    .populate('categories.lipsMakeupCategory')
+    
+    let category;
 
-    const makeupProduct = await MakeupProduct.find({slug: slug});
+    if(makeupProduct[0]?.categories.cheekMakeupCategory){
+      category = makeupProduct[0]?.categories.cheekMakeupCategory.name
+    }
+
+    if(makeupProduct[0]?.categories.eyesMakeupCategory){
+      category = makeupProduct[0]?.categories.eyesMakeupCategory.name
+    }
+
+    if(makeupProduct[0]?.categories.lipsMakeupCategory){
+      category = makeupProduct[0]?.categories.lipsMakeupCategory.name
+    }
 
     if (!makeupProduct) return next(new ErrorHandler(404, "Product not found"));
-
+    console.log('work 1');
+    
     res.status(200).json({
       success: true,
       makeupProduct,
@@ -161,6 +179,52 @@ export const uploadImagesHanlder = async (req: Request, res: Response, next: Nex
 //     });
 //   } catch (error) {
 //     console.log("getTemporryImages error: ", error);
+//     next(error);
+//   }
+// }
+
+
+// GET SINGLE PRODUCT
+// export const checkMakeupProductHandler = async (req: Request, res: Response, next: NextFunction) => {
+//   try {  
+//     const { slug } = req.params;
+
+//     const makeupProduct = await MakeupProduct.findOne({slug: slug}) 
+//     .populate('categories.cheekMakeupCategory')
+//     .populate('categories.eyesMakeupCategory')
+//     .populate('categories.lipsMakeupCategory')
+
+//     let category;
+
+//     if(makeupProduct?.categories.cheekMakeupCategory){
+//       category = makeupProduct?.categories.cheekMakeupCategory.name
+//     }
+
+//     if(makeupProduct?.categories.eyesMakeupCategory){
+//       category = makeupProduct?.categories.eyesMakeupCategory.name
+//     }
+
+//     if(makeupProduct?.categories.lipsMakeupCategory){
+//       category = makeupProduct?.categories.lipsMakeupCategory.name
+//     }
+
+
+
+
+//     // const featuredCategory = await FeaturedCategoryMakeup.findOne({ slug }).populate({
+//     //   path: 'products',
+//     //   model: 'MakeupProduct'
+//     // });
+
+//     if (!makeupProduct) return next(new ErrorHandler(404, "Product not found"));
+
+//     res.status(200).json({
+//       success: true,
+//       makeupProduct,
+//       category,
+//     });
+//   } catch (error) {
+//     console.log("getSingleProductHandler error: ", error);
 //     next(error);
 //   }
 // }

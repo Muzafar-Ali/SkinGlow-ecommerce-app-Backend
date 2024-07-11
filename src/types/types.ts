@@ -17,16 +17,20 @@ export type MakeupDocumentInputType = mongoose.Document & {
   },
   categories: {
     cheekMakeupCategory?: {
-      _id: string
+      name: string;
+      _id: string;
     };
     eyesMakeupCategory?: {
-      _id: string
+      name: string;
+      _id: string;
     };
     lipsMakeupCategory?: {
-      _id: string
+      name: string;
+      _id: string;
     };
     featuredCategory?: {
-      _id: string
+      name: string;
+      _id: string;
     };
   }
 } 
@@ -70,17 +74,19 @@ export type skinCareDocumentType = skinCareDocumentInputType & {
 export type CheekMakeupCategoryType = mongoose.Document & {
   name: string;
   slug?: string;
+  products: string[];
 }
 
 export type EyesMakeupCategoryType = mongoose.Document & {
   name: string;
   slug?: string;
+  products: string[];
 }
 
 export type LipsMakeupCategoryType = mongoose.Document & {
   name: string;
   slug?: string;
-  
+  products: string[];
 }
 
 export type FeaturedCategoryType = mongoose.Document & {

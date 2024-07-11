@@ -9,6 +9,11 @@ const eyesMakeupSchema = new mongoose.Schema({
   slug: { 
     type: String 
   }, 
+  products: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "MakeupProduct",
+    required: false
+  }
 });
 
 // Pre-save hook to generate the slug from the title

@@ -7,13 +7,19 @@ import ErrorHandler from "../utils/errorClass";
 import { MakeupSchemaType } from "../schema/makeupProduct.schema";
 import { FeaturedCategoryMakeup } from "../models/categories/featuredMakeup.model";
 
-export const createMakeupProduct = async (
+export const 
+createMakeupProduct = async (
   requestInput: MakeupSchemaType["body"],
   thumbnail: string | undefined,
   images: (string | undefined)[]
 ) => {
   try {
-    const featureCatId = requestInput.categories?.featuredCategory ?? ""
+    const featureCatId = requestInput.categories?.featuredCategory ?? "" ;
+    const cheekCatId = requestInput.categories?.cheekMakeupCategory ?? "" ;
+    const lipsCatId = requestInput.categories?.lipsMakeupCategory ?? "" ;
+    const eyesCatId = requestInput.categories?.eyesMakeupCategory ?? "" ;
+
+    
     
     // Creates a new makeup product
     if(!featureCatId){
@@ -44,9 +50,74 @@ export const createMakeupProduct = async (
         { new: true}
       );
       
-      const added = result?.products.includes(product._id)    
+      const added = result?.products?.includes(product._id)    
       if(!added) throw new Error("Product not added to featured category");
       
+      return product;
+    }
+
+    // Creates a new makeup product and adds it to the cheek category
+    if(cheekCatId){
+      const product = await MakeupProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+
+      if (!product) throw new Error("Product not created");
+
+      const result = await CheekMakeupCategory.findByIdAndUpdate(
+        cheekCatId,
+        { $push: { products: product._id } },
+        { new: true}
+      );
+
+      const added = result?.products?.includes(product._id)
+      if(!added) throw new Error("Product not added to cheek category");
+
+      return product;
+    }
+    // Creates a new makeup product and adds it to the lips category
+    if(lipsCatId){
+      const product = await MakeupProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+
+      if (!product) throw new Error("Product not created");
+
+      const result = await LipsMakeupCategory.findByIdAndUpdate(
+        lipsCatId,
+        { $push: { products: product._id } },
+        { new: true}
+      );
+
+      const added = result?.products?.includes(product._id)
+      if(!added) throw new Error("Product not added to lips category");
+
+      return product;
+    }
+
+    // Creates a new makeup product and adds it to the eyes category
+    if(eyesCatId){
+      const product = await MakeupProduct.create({
+        ...requestInput,
+        thumbnail,
+        images
+      });
+
+      if (!product) throw new Error("Product not created");
+
+      const result = await EyesMakeupCategory.findByIdAndUpdate(
+        eyesCatId,
+        { $push: { products: product._id } },
+        { new: true}
+      );
+
+      const added = result?.products?.includes(product._id)
+      if(!added) throw new Error("Product not added to eyes category");
+
       return product;
     }
 
@@ -54,6 +125,7 @@ export const createMakeupProduct = async (
     throw error;
   }
 };
+
 
 export const getCategoryModel = (val: string) => {
   let categoryModel: Model<any>;

@@ -9,6 +9,11 @@ const skinConditionSchema = new mongoose.Schema({
   slug: { 
     type: String 
   }, 
+  products: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "SkinCareProduct",
+    required: false
+  }
 });
 
 // Pre-save hook to generate the slug from the title

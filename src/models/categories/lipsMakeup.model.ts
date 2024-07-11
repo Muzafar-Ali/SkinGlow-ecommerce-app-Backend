@@ -9,7 +9,13 @@ const lipsMakeupSchema = new mongoose.Schema({
   slug: { 
     type: String 
   }, 
+  products: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "MakeupProduct",
+    required: false
+  }
 });
+
 // Pre-save hook to generate the slug from the title
 lipsMakeupSchema.pre("save", function (next) {
   if (!this.isModified("name")) return next(); 
