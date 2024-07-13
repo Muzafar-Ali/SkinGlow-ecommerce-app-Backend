@@ -8,8 +8,11 @@ import {
     createSkinConditionCategoryHandler, 
     getFeaturedSkincareCategoryHandler, 
     getSkinCareCategoryHandler, 
+    getSkinCareSingleCategoryHandler, 
     getSkinConditionCategoryHandler, 
-    getSkincareBestSellerProducts 
+    getSkinConditionSingleCategoryHandler, 
+    getSkincareBestSellerProducts, 
+    getSkincareLatestProducts
 } from '../controllers/category.controllers';
 
 const router = express.Router();
@@ -19,8 +22,12 @@ router.post("/skincondition/create", requestValidator(skinConditionSchema), crea
 router.post("/featured/create", requestValidator(FeaturedSchema), createFeaturedSkincareCategoryHandler)
 
 router.get("/skincare/all", getSkinCareCategoryHandler)
+router.get("/skincare/:slug", getSkinCareSingleCategoryHandler)
 router.get("/skincondition/all", getSkinConditionCategoryHandler)
+router.get("/skincondition/:slug", getSkinConditionSingleCategoryHandler)
+
 router.get("/featured/all", getFeaturedSkincareCategoryHandler)
 router.get("/featured/best-seller", getSkincareBestSellerProducts)
+router.get("/featured/latest", getSkincareLatestProducts)
 
 export default router;

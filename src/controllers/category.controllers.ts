@@ -33,7 +33,7 @@ export const createCheekMakeupCategoryHandler = async (
       category,
     });
   } catch (error) {
-    console.log("cheekMakeupCategoryHandler", error);
+    console.log("createCheekMakeupCategoryHandler", error);
     next(error);
   }
 };
@@ -54,7 +54,7 @@ export const createEyesMakeupCategoryHandler = async (
       category,
     });
   } catch (error) {
-    console.log("cheekMakeupCategoryHandler", error);
+    console.log("createEyesMakeupCategoryHandler", error);
     next(error);
   }
 };
@@ -76,7 +76,7 @@ export const createLipsMakeupCategoryHandler = async (
       category,
     });
   } catch (error) {
-    console.log("cheekMakeupCategoryHandler", error);
+    console.log("createLipsMakeupCategoryHandler", error);
     next(error);
   }
 };
@@ -114,7 +114,7 @@ export const createSkinCareCategoryHandler = async (req: Request, res: Response,
       category,
     });
   } catch (error) {
-    console.log("cheekMakeupCategoryHandler", error);
+    console.log("createSkinCareCategoryHandler", error);
     next(error);
   }
 };
@@ -131,7 +131,7 @@ export const createSkinConditionCategoryHandler = async (req: Request, res: Resp
       category,
     });
   } catch (error) {
-    console.log("cheekMakeupCategoryHandler", error);
+    console.log("createSkinConditionCategoryHandler", error);
     next(error);
   }
 };
@@ -157,7 +157,7 @@ export const createFeaturedSkincareCategoryHandler = async (
   }
 };
 
-// GET CHEEK MAKEUP CATEGORY
+// GET CHEEK MAKEUP ALL CATEGORY
 export const getCheekMakeupCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await getCategory(CheekMakeupCategory);
@@ -173,7 +173,26 @@ export const getCheekMakeupCategoryHandler = async (req: Request, res: Response,
   }
 };
 
-// GET LIPS MAKEUP CATEGORY
+// GET CHEEK MAKEUP SINGLE CATEGORY
+export const getCheekMakeupSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { slug } = req.params
+    console.log(slug);
+    
+    const category = await getCategory(CheekMakeupCategory, slug);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getCheekMakeupSingleCategoryHandler", error);
+    next(error);
+  }
+};
+
+// GET LIPS MAKEUP ALL CATEGORIES
 export const getLipsMakeupCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await getCategory(LipsMakeupCategory);
@@ -184,12 +203,29 @@ export const getLipsMakeupCategoryHandler = async (req: Request, res: Response, 
       category,
     });
   } catch (error) {
-    console.log("getCheekMakeupCategoryHandler", error);
+    console.log("getLipsMakeupCategoryHandler", error);
     next(error);
   }
 };
 
-// GET EYES MAKEUP CATEGORY
+// GET LIPS MAKEUP SINGLE CATEGORY
+export const getLipsMakeupSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { slug } = req.params
+    const category = await getCategory(LipsMakeupCategory, slug);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getLipsMakeupSingleCategoryHandler", error);
+    next(error);
+  }
+};
+
+// GET EYES MAKEUP ALL CATEGORIES
 export const getEyesMakeupCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await getCategory(EyesMakeupCategory);
@@ -200,7 +236,24 @@ export const getEyesMakeupCategoryHandler = async (req: Request, res: Response, 
       category,
     });
   } catch (error) {
-    console.log("getCheekMakeupCategoryHandler", error);
+    console.log("getEyesMakeupCategoryHandler", error);
+    next(error);
+  }
+};
+
+// GET EYES MAKEUP SINGLE CATEGORY
+export const getEyesMakeupSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { slug } = req.params
+    const category = await getCategory(EyesMakeupCategory, slug);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getEyesMakeupSingleCategoryHandler", error);
     next(error);
   }
 };
@@ -216,12 +269,12 @@ export const getFeaturedMakeupCategoryHandler = async (req: Request, res: Respon
       category,
     });
   } catch (error) {
-    console.log("getCheekMakeupCategoryHandler", error);
+    console.log("getFeaturedMakeupCategoryHandler", error);
     next(error);
   }
 };
 
-// GET SKINCARE CATEGORY
+// GET SKINCARE ALL CATEGORIES
 export const getSkinCareCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await getCategory(SkincareCategory);
@@ -232,12 +285,29 @@ export const getSkinCareCategoryHandler = async (req: Request, res: Response, ne
       category,
     });
   } catch (error) {
-    console.log("getCheekMakeupCategoryHandler", error);
+    console.log("getSkinCareCategoryHandler", error);
     next(error);
   }
 };
 
-// GET SKIN CONDITION CATEGORY
+// GET SKINCARE SINGLE CATEGORY
+export const getSkinCareSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { slug } = req.params
+    const category = await getCategory(SkincareCategory, slug);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getSkinCareSingleCategoryHandler", error);
+    next(error);
+  }
+};
+
+// GET SKIN CONDITION ALL CATEGORIES
 export const getSkinConditionCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await getCategory(SkinConditionCategory);
@@ -248,7 +318,24 @@ export const getSkinConditionCategoryHandler = async (req: Request, res: Respons
       category,
     });
   } catch (error) {
-    console.log("getCheekMakeupCategoryHandler", error);
+    console.log("getSkinConditionCategoryHandler", error);
+    next(error);
+  }
+};
+
+// GET SKIN CONDITION SINGLE CATEGORy
+export const getSkinConditionSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { slug } = req.params
+    const category = await getCategory(SkinConditionCategory, slug);
+
+    res.status(200).json({
+      success: true,
+      total: category.length,
+      category,
+    });
+  } catch (error) {
+    console.log("getSkinCareSingleCategoryHandler", error);
     next(error);
   }
 };
@@ -264,7 +351,7 @@ export const getFeaturedSkincareCategoryHandler = async (req: Request, res: Resp
       category,
     });
   } catch (error) {
-    console.log("getCheekMakeupCategoryHandler", error);
+    console.log("getFeaturedSkincareCategoryHandler", error);
     next(error);
   }
 };
@@ -285,7 +372,28 @@ export const getMakeupBestSellerProducts = async (req: Request, res: Response, n
     });
 
   } catch (error) {
-    console.error("Error fetching best sellers: ", error);
+    console.error("Error fetching best sellers makeup: ", error);
+    next(error);
+  }
+};
+
+// GET LATEST MAKEUP
+export const getMakeupLatestProducts = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const latestProducts = await FeaturedCategoryMakeup.findOne({ name: "Latest" })
+    .populate({
+      path: "products",
+      // select: "-_id title price rating thumbnail", // Optional: Select specific fields
+    });
+
+    res.status(200).json({
+      success: true,
+      total: latestProducts?.products.length,
+      latestProducts,
+    });
+
+  } catch (error) {
+    console.error("Error fetching latest makeup: ", error);
     next(error);
   }
 };
@@ -306,7 +414,28 @@ export const getSkincareBestSellerProducts = async (req: Request, res: Response,
     });
 
   } catch (error) {
-    console.error("Error fetching best sellers: ", error);
+    console.error("Error fetching best sellers skincare: ", error);
+    next(error);
+  }
+};
+
+// GET LATEST SKINCARE
+export const getSkincareLatestProducts = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const latestProducts = await FeaturedCategorySkincare.findOne({ name: "Latest" })
+    .populate({
+      path: "products",
+      // select: "-_id title price rating thumbnail", // Optional: Select specific fields
+    });
+
+    res.status(200).json({
+      success: true,
+      total: latestProducts?.products.length,
+      latestProducts,
+    });
+
+  } catch (error) {
+    console.error("Error fetching latest skincare: ", error);
     next(error);
   }
 };

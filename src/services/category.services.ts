@@ -22,9 +22,12 @@ export const createCategory = async (name: string, categoryModel: any) => {
   }
 };
 
-export const getCategory = async (categoryModel: any) => {
+export const getCategory = async (categoryModel: any, categoryName?: string) => {
   try {
-    const category = await categoryModel.find();
+    let category;
+
+    if (categoryName) category = await categoryModel.find({slug: categoryName}).populate("products");
+    if (!categoryName) category = await categoryModel.find();
 
     if (!category) throw new ErrorHandler(404, "Category not found");
 
