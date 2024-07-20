@@ -1,7 +1,8 @@
-import z from "zod";
+import z, { object } from "zod";
 import { ProductDetailsSchema } from "./makeupProduct.schema";
 
 const CategoriesSchema = z.object({
+  skincare: object({
     skinConditionCategory: z.string({
       invalid_type_error: "Skin condition category must be a string",
     }).optional(),
@@ -11,6 +12,7 @@ const CategoriesSchema = z.object({
     featuredCategory: z.string({
       invalid_type_error: "Featured category must be a string",
     }).optional(),
+  })
 });
 
 

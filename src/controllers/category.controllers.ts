@@ -12,7 +12,7 @@ import {
 import { SkinConditionCategory } from "../models/categories/skinCondition.model";
 import { FeaturedCategoryMakeup } from "../models/categories/featuredMakeup.model";
 import { FeaturedCategorySkincare } from "../models/categories/featuredSkincare.model";
-import { SkincareCategory } from "../models/categories/skincare.model";
+import { SkincareCategory } from "../models/categories/skinCare.model";
 
 
 // CREATE CHEEK MAKEUP CATEGORY
@@ -22,8 +22,6 @@ export const createCheekMakeupCategoryHandler = async (
   next: NextFunction
 ) => {
   try {
-    console.log(req.body);
-
     const { name } = req.body;
 
     const category = await createCategory(name, CheekMakeupCategory);
@@ -177,7 +175,6 @@ export const getCheekMakeupCategoryHandler = async (req: Request, res: Response,
 export const getCheekMakeupSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { slug } = req.params
-    console.log(slug);
     
     const category = await getCategory(CheekMakeupCategory, slug);
 
@@ -294,6 +291,8 @@ export const getSkinCareCategoryHandler = async (req: Request, res: Response, ne
 export const getSkinCareSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { slug } = req.params
+    console.log('slug', slug);
+    
     const category = await getCategory(SkincareCategory, slug);
 
     res.status(200).json({

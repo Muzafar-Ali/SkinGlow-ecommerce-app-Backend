@@ -1,8 +1,13 @@
 import express from "express";
-import { createMakeupProductHandler, getAllMakeupProductsHandler, getMakeupProductByCategoryHandler, getSingleMakeupProductHandler, uploadImagesHanlder } from "../controllers/makeup.controllers";
 import { MakeupSchema } from "../schema/makeupProduct.schema";
 import requestValidator from "../middlewares/requestValidator";
 import { upload } from "../middlewares/multer.middleware";
+import { 
+  createMakeupProductHandler, 
+  getAllMakeupProductsHandler, 
+  getMakeupProductByCategoryHandler, 
+  getSingleMakeupProductHandler
+} from "../controllers/makeup.controllers";
 
 
 const router = express.Router();

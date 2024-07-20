@@ -5,6 +5,7 @@ import { SkinCareProduct } from "../models/products/skincare.model";
 import { uploadonToCloudinary } from "../utils/cloudinary";
 import path from "path";
 import fs from 'fs'
+import ErrorHandler from "../utils/errorClass";
 
 // CREATE PRODUCTS
 export const createSkincareProductHandler = async (
@@ -89,6 +90,33 @@ export const getSkincareProductCollectionHandler = async (req: Request, res: Res
     next(error);
   }
 }
-  
+
+// GET SINGLE PRODUCT
+export const getSingleSkincareProductHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {  
+    const { slug } = req.params;
+    
+    const skincareProduct = await SkinCareProduct.find({slug: slug}) 
+    .populate('categories.skincare.skinCareCategory')
+    .populate('categories.skincare.skinConditionCategory')
+    
+    let category;
+
+    if(skincareProduct[0]?.categories.skincare.skinCareCategory){
+      category = skincareProduct[0]?.categories.skincare.skinCareCategory.name
+    }
+
+    if (!skincareProduct) return next(new ErrorHandler(404, "Product not found"));
+    
+    
+    res.status(200).json({
+      success: true,
+      skincareProduct,
+    });
+  } catch (error) {
+    console.log("getSingleProductHandler error: ", error);
+    next(error);
+  }
+}
   
   

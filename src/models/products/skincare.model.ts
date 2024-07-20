@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MakeupDocumentType } from "../../types/types";
+import { skinCareDocumentType } from "../../types/types";
 
 const skinCareSchema = new mongoose.Schema(
   {
@@ -49,21 +49,23 @@ const skinCareSchema = new mongoose.Schema(
       },
     },
     categories: {
-      skinConditionCategory: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "SkinCareConditionCategory",
-        required: false,
-      },
-      skinCareCategory: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "EyesMakeupCategory",
-        required: false,
-      },
-      featuredCategory: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "FeaturedCategorySkincare",
-        required: false,
-      },
+      skincare: {
+        skinConditionCategory: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "SkinConditionCategory",
+          required: false,
+        },
+        skinCareCategory: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "SkincareCategory",
+          required: false,
+        },
+        featuredCategory: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "FeaturedCategorySkincare",
+          required: false,
+        },
+      }
     },
   },
   {
@@ -80,4 +82,4 @@ skinCareSchema.pre("save", function (next) {
   next();
 });
 
-export const SkinCareProduct = mongoose.model<MakeupDocumentType>("SkinCareProduct", skinCareSchema);
+export const SkinCareProduct = mongoose.model<skinCareDocumentType>("SkinCareProduct", skinCareSchema);

@@ -1,6 +1,4 @@
-import { Request } from "express";
 import mongoose from "mongoose";
-import Multer from "multer"
 
 export type MakeupDocumentInputType = mongoose.Document & {
   title: string;
@@ -16,22 +14,24 @@ export type MakeupDocumentInputType = mongoose.Document & {
     features: string;
   },
   categories: {
-    cheekMakeupCategory?: {
-      name: string;
-      _id: string;
-    };
-    eyesMakeupCategory?: {
-      name: string;
-      _id: string;
-    };
-    lipsMakeupCategory?: {
-      name: string;
-      _id: string;
-    };
-    featuredCategory?: {
-      name: string;
-      _id: string;
-    };
+    makeup: {
+      cheekMakeupCategory?: {
+        _id: string;
+        name: string;
+      };
+      eyesMakeupCategory?: {
+        _id: string;
+        name: string;
+      };
+      lipsMakeupCategory?: {
+        _id: string;
+        name: string;
+      };
+      featuredCategory?: {
+        _id: string;
+        name: string;
+      };
+    }
   }
 } 
 
@@ -54,15 +54,20 @@ export type skinCareDocumentInputType = mongoose.Document & {
     features: string;
   },
   categories: {
-    skinCareCategory?: {
-      _id: string
-    };
-    skinConditionCategory?: {
-      _id: string
-    };
-    featuredCategory?: {
-      _id: string
-    };
+    skincare: {
+      skinCareCategory?: {
+        _id: string;
+        name: string;
+      };
+      skinConditionCategory?: {
+        _id: string;
+        name: string;
+      };
+      featuredCategory?: {
+        _id: string;
+        name: string;
+      };
+    }
   }
 }
 

@@ -115,22 +115,22 @@ export const getSingleMakeupProductHandler = async (req: Request, res: Response,
     const { slug } = req.params;
     
     const makeupProduct = await MakeupProduct.find({slug: slug}) 
-    .populate('categories.cheekMakeupCategory')
-    .populate('categories.eyesMakeupCategory')
-    .populate('categories.lipsMakeupCategory')
+    .populate('categories.makeup.cheekMakeupCategory')
+    .populate('categories.makeup.eyesMakeupCategory')
+    .populate('categories.makeup.lipsMakeupCategory')
     
     let category;
 
-    if(makeupProduct[0]?.categories.cheekMakeupCategory){
-      category = makeupProduct[0]?.categories.cheekMakeupCategory.name
+    if(makeupProduct[0]?.categories.makeup.cheekMakeupCategory){
+      category = makeupProduct[0]?.categories.makeup.cheekMakeupCategory.name
     }
 
-    if(makeupProduct[0]?.categories.eyesMakeupCategory){
-      category = makeupProduct[0]?.categories.eyesMakeupCategory.name
+    if(makeupProduct[0]?.categories.makeup.eyesMakeupCategory){
+      category = makeupProduct[0]?.categories.makeup.eyesMakeupCategory.name
     }
 
-    if(makeupProduct[0]?.categories.lipsMakeupCategory){
-      category = makeupProduct[0]?.categories.lipsMakeupCategory.name
+    if(makeupProduct[0]?.categories.makeup.lipsMakeupCategory){
+      category = makeupProduct[0]?.categories.makeup.lipsMakeupCategory.name
     }
 
     if (!makeupProduct) return next(new ErrorHandler(404, "Product not found"));
