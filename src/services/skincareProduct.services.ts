@@ -8,7 +8,7 @@ export const createSkincareProduct = async (
   images: (string | undefined)[]
 ) => {
   try {
-    const featureCatId = requestInput.categories?.featuredCategory ?? ""
+    const featureCatId = requestInput.categories?.skincare.featuredCategory ?? ""
     
     // Creates a new makeup product
     if(!featureCatId){
