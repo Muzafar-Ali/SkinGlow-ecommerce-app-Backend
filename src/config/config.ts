@@ -15,6 +15,10 @@ const config = {
   publicKey: process.env.PUBLIC_KEY,
   googleClientId: process.env.GOOGLE_CLIENT_ID,
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  //alogila
+  algoliaAppId: process.env.ALGOLIA_APP_ID,
+  algoliaSearchKey: process.env.ALGOLIA_ADMIN_KEY,
+  algoliaWriteKey: process.env.ALGOLIA_WRITE_API_KEY,
 
   // makeup product categories
 };
