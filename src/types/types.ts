@@ -99,3 +99,18 @@ export type FeaturedCategoryType = mongoose.Document & {
   slug?: string;
   products: string[];
 }
+
+
+export type CombinedSingleProductType = {
+  title: string;
+  slug?: string;
+  price: number;
+  stock: number;
+  thumbnail: string;
+  quantity: number;
+  onQuantityPrice: number;
+  createdAt: string;
+  updatedAt: string;
+
+}
+

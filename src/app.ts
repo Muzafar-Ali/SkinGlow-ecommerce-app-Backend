@@ -10,6 +10,7 @@ import skincareRoute from './routes/skincareProduct.routes';
 import makeupCategoryRoute from './routes/categoryMakeup.routes';
 import skincareCategoryRoute from './routes/categorySkincare.routes';
 import searchRoutes from './routes/search.routes';
+import orderRoutes from './routes/order.routes';
 import config from './config/config';
 
 const app = express();
@@ -41,6 +42,9 @@ app.use("/v1/skincare/category", skincareCategoryRoute)
 
 // search routes
 app.use("/v1", searchRoutes)
+
+// orders routes
+app.use("/v1", orderRoutes)
 
 // Error middleware
 app.use(errorMiddleware)

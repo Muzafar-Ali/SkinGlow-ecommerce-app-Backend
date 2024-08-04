@@ -4,6 +4,7 @@ dotenv.config();
 const config = {
   port: 4000,
   domain: "localhost",
+  clientUrl: process.env.CLIENT_URL,
   dbUri: process.env.MONGO_URL,
   cloud: process.env.CLOUD_NAME,
   cloudinaryKey: process.env.CLOUDINARY_KEY,
@@ -19,6 +20,7 @@ const config = {
   algoliaAppId: process.env.ALGOLIA_APP_ID,
   algoliaSearchKey: process.env.ALGOLIA_ADMIN_KEY,
   algoliaWriteKey: process.env.ALGOLIA_WRITE_API_KEY,
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY,
 
   // makeup product categories
 };
