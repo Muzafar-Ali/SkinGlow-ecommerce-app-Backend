@@ -15,10 +15,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 20 # Specify your Node.js version
-        
+          node-version: 20.15.1 # Specify your Node.js version
+     
       - name: Install Dependencies
         run: npm ci
+      
+      - name: Install Type Definitions
+        run: yarn add --dev @types/node @types/express # Add other type definitions as needed
+        
         
       - name: Build
         run: npm run build # Replace with your build command if needed
