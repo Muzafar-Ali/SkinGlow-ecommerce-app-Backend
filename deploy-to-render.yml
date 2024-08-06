@@ -11,21 +11,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 20.15.1 # Specify your Node.js version
-     
+
       - name: Install Dependencies
-        run: npm ci
-      
-      - name: Install Type Definitions
-        run: yarn add --dev @types/node @types/express @types/morgan @types/cors @types/dotenv @types/multer @types/stripe @types/algoliasearch @types/mongodb @types/mongoose @types/zod @types/cloudinary @types/path @types/fs       
-        
+        run: yarn install
+
       - name: Build
-        run: npm run build # Replace with your build command if needed
-        
+        run: yarn build # Replace with your build command if needed
+
       - name: Deploy to Render
         env:
           RENDER_API_TOKEN: ${{ secrets.RENDER_API_TOKEN }} # Ensure you have this secret set in your repository settings
@@ -33,5 +30,5 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer $RENDER_API_TOKEN" \
             -H "Content-Type: application/json" \
-            https://api.render.com/v1/services/srv-cqomjtij1k6c73d4rgf0/deploys \
+            https://api.render.com/v1/services/srv-cqnr43dds78s739fau40/deploys \
             -d '{"branch":"main"}' # Adjust the branch as needed
