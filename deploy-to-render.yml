@@ -21,8 +21,7 @@ jobs:
         run: npm ci
       
       - name: Install Type Definitions
-        run: yarn add --dev @types/node @types/express # Add other type definitions as needed
-        
+        run: yarn add --dev @types/node @types/express @types/morgan @types/cors @types/dotenv @types/multer @types/stripe @types/algoliasearch @types/mongodb @types/mongoose @types/zod @types/cloudinary @types/path @types/fs       
         
       - name: Build
         run: npm run build # Replace with your build command if needed
@@ -34,5 +33,5 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer $RENDER_API_TOKEN" \
             -H "Content-Type: application/json" \
-            https://api.render.com/v1/services/srv-cqnr43dds78s739fau40/deploys \
+            https://api.render.com/v1/services/srv-cqomjtij1k6c73d4rgf0/deploys \
             -d '{"branch":"main"}' # Adjust the branch as needed
