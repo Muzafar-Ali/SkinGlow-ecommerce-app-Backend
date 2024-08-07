@@ -44,6 +44,7 @@ export const createOrderWithoutUserHandler = async (req: Request,  res: Response
   
 }
 
+
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
 const endpointSecret = "whsec_24feb2f77660832117972446e2b6a74b643245fc1c0941f6fe1589f44fb091b0";
 
@@ -62,9 +63,84 @@ export const stripeWebhookHandler = async (req: Request, res: Response, next: Ne
 
   // Handle the event
   switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntentSucceeded = event.data.object;
-      // Then define and call a function to handle the event payment_intent.succeeded
+    case 'checkout.session.async_payment_failed':
+      const checkoutSessionAsyncPaymentFailed = event.data.object;
+      // Then define and call a function to handle the event checkout.session.async_payment_failed
+      console.log( 'checkoutSessionAsyncPaymentFailed', checkoutSessionAsyncPaymentFailed);
+      
+      break;
+    case 'checkout.session.async_payment_succeeded':
+      const checkoutSessionAsyncPaymentSucceeded = event.data.object;
+      // Then define and call a function to handle the event checkout.session.async_payment_succeeded
+      console.log('checkoutSessionAsyncPaymentSucceeded', checkoutSessionAsyncPaymentSucceeded);
+      
+      break;
+    case 'checkout.session.completed':
+      const checkoutSessionCompleted = event.data.object;
+      // Then define and call a function to handle the event checkout.session.completed
+      console.log('checkoutSessionCompleted', checkoutSessionCompleted);
+      
+      break;
+    case 'checkout.session.expired':
+      const checkoutSessionExpired = event.data.object;
+      // Then define and call a function to handle the event checkout.session.expired
+      console.log('checkoutSessionExpired', checkoutSessionExpired);
+      
+      break;
+    case 'invoice.created':
+      const invoiceCreated = event.data.object;
+      // Then define and call a function to handle the event invoice.created
+      console.log('invoiceCreated', invoiceCreated);
+      
+      break;
+    case 'invoice.deleted':
+      const invoiceDeleted = event.data.object;
+      // Then define and call a function to handle the event invoice.deleted
+      console.log('invoiceDeleted', invoiceDeleted);
+      
+      break;
+    case 'invoice.finalization_failed':
+      const invoiceFinalizationFailed = event.data.object;
+      // Then define and call a function to handle the event invoice.finalization_failed
+      console.log('invoiceFinalizationFailed', invoiceFinalizationFailed);
+      
+      break;
+    case 'invoice.finalized':
+      const invoiceFinalized = event.data.object;
+      // Then define and call a function to handle the event invoice.finalized
+      console.log('invoiceFinalized', invoiceFinalized);
+      
+      break;
+    case 'invoice.paid':
+      const invoicePaid = event.data.object;
+      // Then define and call a function to handle the event invoice.paid
+      console.log('invoicePaid', invoicePaid);
+      
+      break;
+    case 'invoice.payment_failed':
+      const invoicePaymentFailed = event.data.object;
+      // Then define and call a function to handle the event invoice.payment_failed
+      console.log('invoicePaymentFailed', invoicePaymentFailed);
+      
+      invoicePaymentFailed
+      break;
+    case 'invoice.payment_succeeded':
+      const invoicePaymentSucceeded = event.data.object;
+      // Then define and call a function to handle the event invoice.payment_succeeded
+      console.log('invoicePaymentSucceeded', invoicePaymentSucceeded);
+      
+      break;
+    case 'refund.created':
+      const refundCreated = event.data.object;
+      // Then define and call a function to handle the event refund.created
+      console.log('refundCreated', refundCreated);
+      
+      break;
+    case 'refund.updated':
+      const refundUpdated = event.data.object;
+      // Then define and call a function to handle the event refund.updated
+      console.log('refundUpdated', refundUpdated);
+      
       break;
     // ... handle other event types
     default:
@@ -73,4 +149,4 @@ export const stripeWebhookHandler = async (req: Request, res: Response, next: Ne
 
   // Return a 200 response to acknowledge receipt of the event
   res.send();
-}
+};

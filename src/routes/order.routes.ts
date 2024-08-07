@@ -4,7 +4,7 @@ import { createOrderWithoutUserHandler } from "../controllers/order.controllers"
 const router = express.Router();
 
 router.post("/orders", createOrderWithoutUserHandler)
-router.post('/stripe-webhook', )
+router.post('/stripewebhook',express.raw({type: 'application/json'}), )
 
 export default router;
 
