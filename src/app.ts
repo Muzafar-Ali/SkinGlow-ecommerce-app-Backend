@@ -30,7 +30,6 @@ app.get('/health', (req, res) => {
     message: 'Runnig succesfully'
   })
 });
-   
 
 // product routes
 app.use("/v1/makeup", makeupRoute)
