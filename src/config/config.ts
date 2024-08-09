@@ -20,8 +20,9 @@ const config = {
   algoliaAppId: process.env.ALGOLIA_APP_ID,
   algoliaSearchKey: process.env.ALGOLIA_ADMIN_KEY,
   algoliaWriteKey: process.env.ALGOLIA_WRITE_API_KEY,
+  // stripe
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
-
+  endpointSecret: process.env.WEBHOOK_ENDPOINSECRET,
   // makeup product categories
 };
 

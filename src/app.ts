@@ -11,9 +11,14 @@ import makeupCategoryRoute from './routes/categoryMakeup.routes';
 import skincareCategoryRoute from './routes/categorySkincare.routes';
 import searchRoutes from './routes/search.routes';
 import orderRoutes from './routes/order.routes';
+import webhookRoutes from './routes/webhook.routes';
 import config from './config/config';
 
 const app = express();
+
+// we need to keep this route before express.json to get raw body
+// webhook routes
+app.use("/v1", webhookRoutes)
 
 // Middlewares
 app.use(express.json());

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 export type MakeupDocumentInputType = mongoose.Document & {
   title: string;
@@ -114,3 +114,12 @@ export type CombinedSingleProductType = {
 
 }
 
+export type OrderItemType = {
+  title: string;
+  price: number;
+  thumbnail: string;
+  quantity: number;
+  itemPrice: number;
+  product: ObjectId;
+  _id: string;
+}

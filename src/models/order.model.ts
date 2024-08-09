@@ -1,13 +1,21 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose"
+import { MakeupDocumentType } from "../types/types"
+
   
-const orderSchema  = new Schema({
+const orderSchema  = new mongoose.Schema({
+
+  orderId: {
+    type: String,
+    required: [true, 'order id is required']
+  },
+
+  stripeId: {
+    type: String,
+    required: [true, 'Stripe id is required']
+  },
 
   orderItems: [
     {
-      id: {
-          type: String,
-          required: [true, 'Product id is required']
-      },
       title: {
           type: String,
           required: [true, 'Product title is required']
@@ -28,11 +36,11 @@ const orderSchema  = new Schema({
           type: Number,
           required: [true, 'Product item price is required']
       },
-      // product: {
-      //     type: mongoose.Schema.Types.ObjectId,
-      //     ref: 'Products',
-      //     require: [true, 'Product id is required']
-      // }
+      product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'MakeupProduct',
+          require: [true, 'Product id is required']
+      }
     }
   ],
 
@@ -42,14 +50,20 @@ const orderSchema  = new Schema({
     required: [true, 'Total amount is required']
   },
 
-  // orderStatus: {
-  //   type: String,
-  //   enum: ['processing', 'shipped', 'delivered', 'cancelled', 'returned'],
-  //   default: 'processing'
-  // },
+  orderStatus: {
+    type: String,
+    enum: ['processing', 'shipped', 'delivered', 'cancelled', 'returned'],
+    default: 'processing'
+  },
+  
+  paymentStatus: {
+    type: String,
+    enum: ['unpaid', 'paid', 'refunded'],
+    default: 'unpaid'
+  },
 
-  // deliveredAt: Date,
-  // shippedAt: Date,
+  deliveredAt: Date,
+  shippedAt: Date,
 
   createdAt: {
     type: Date,
@@ -63,4 +77,4 @@ const orderSchema  = new Schema({
 })
 
 
-export const Order = mongoose.model("Order", orderSchema)  
+export const Order = mongoose.model<MakeupDocumentType>("Order", orderSchema)  
