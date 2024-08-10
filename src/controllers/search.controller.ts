@@ -6,7 +6,7 @@ import { MakeupProduct } from "../models/products/makeup.model";
 import { SkinCareProduct } from "../models/products/skincare.model";
 
 
-export const createSearchIndexHandler = async (req: Request, res: Response) => {
+export const createaAgoliaSearchIndexHandler = async (req: Request, res: Response) => {
   
   const client = algoliasearch(config.algoliaAppId!, config.algoliaWriteKey!);
   const indexName = 'skinglowSearch'; // Choose a unique name for your index
@@ -63,23 +63,25 @@ export const createSearchIndexHandler = async (req: Request, res: Response) => {
   // }
 };
 
-export const srachHandler = async (req: Request, res: Response) => {
+// NOTE: this method is incomplete and not implemented in the frontend yet.
+export const searchHandler = async (req: Request, res: Response) => {
   const client = algoliasearch(config.algoliaAppId!, config.algoliaSearchKey!);
   const indexName = 'skinglowSearch'; // Choose a unique name for your index
   const index = client.initIndex(indexName);
   const query = 'lip'
+  
   try {
     const searchResults = await index.search(query as string);
-      res.status(200).json({
-        success: true,
-        total: searchResults.length,
-        searchResults,
+    res.status(200).json({
+      success: true,
+      total: searchResults.length,
+      searchResults,
     });
   } catch (error:any) {
     console.error('Error searching index:', error);
     res.status(500).json({
-    message: 'failed to search index',
-    error: error.message
-        });
+      message: 'failed to search index',
+      error: error.message
+    });
   }
 };

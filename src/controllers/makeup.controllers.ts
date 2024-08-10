@@ -134,7 +134,6 @@ export const getSingleMakeupProductHandler = async (req: Request, res: Response,
     }
 
     if (!makeupProduct) return next(new ErrorHandler(404, "Product not found"));
-    console.log('work 1');
     
     res.status(200).json({
       success: true,
