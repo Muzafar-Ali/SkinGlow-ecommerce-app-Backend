@@ -14,10 +14,10 @@ createMakeupProduct = async (
   images: (string | undefined)[]
 ) => {
   try {
-    const featureCatId = requestInput.categories?.featuredCategory ?? "" ;
-    const cheekCatId = requestInput.categories?.cheekMakeupCategory ?? "" ;
-    const lipsCatId = requestInput.categories?.lipsMakeupCategory ?? "" ;
-    const eyesCatId = requestInput.categories?.eyesMakeupCategory ?? "" ;
+    const featureCatId = requestInput.categories?.makeup.featuredCategory ?? "" ;
+    const cheekCatId = requestInput.categories?.makeup.cheekMakeupCategory ?? "" ;
+    const lipsCatId = requestInput.categories?.makeup.lipsMakeupCategory ?? "" ;
+    const eyesCatId = requestInput.categories?.makeup.eyesMakeupCategory ?? "" ;
 
     
     

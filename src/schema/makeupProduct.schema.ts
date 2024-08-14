@@ -20,18 +20,20 @@ export const ProductDetailsSchema = z.object({
 });
 
 const CategoriesSchema = z.object({
-  cheekMakeupCategory: z.string({
-    invalid_type_error: "Cheek makeup category must be a string",
-  }).optional(),
-  eyesMakeupCategory: z.string({
-    invalid_type_error: "Eyes makeup category must be a string",
-  }).optional(),
-  lipsMakeupCategory: z.string({
-    invalid_type_error: "Lips makeup category must be a string",
-  }).optional(),
-  featuredCategory: z.string({
-    invalid_type_error: "Lips makeup category must be a string",
-  }).optional(),
+  makeup: z.object({
+    cheekMakeupCategory: z.string({
+      invalid_type_error: "Cheek makeup category must be a string",
+    }).optional(),
+    eyesMakeupCategory: z.string({
+      invalid_type_error: "Eyes makeup category must be a string",
+    }).optional(),
+    lipsMakeupCategory: z.string({
+      invalid_type_error: "Lips makeup category must be a string",
+    }).optional(),
+    featuredCategory: z.string({
+      invalid_type_error: "Featured makeup category must be a string",
+    }).optional(),
+  })
 });
 
 export const MakeupSchema = z.object({
