@@ -27,7 +27,7 @@ export const createOrderWithoutUserHandler = async (req: Request,  res: Response
     })),
     mode: 'payment',
     success_url: `${config.clientUrl}/success`,
-    cancel_url: `${config.clientUrl}/cancel`,
+    cancel_url: `${config.clientUrl}/failed`,
     payment_method_types: ['card'],
     shipping_address_collection: { allowed_countries: ['US','AE'] },
   });

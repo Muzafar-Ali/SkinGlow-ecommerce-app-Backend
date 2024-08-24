@@ -162,7 +162,8 @@ export const getCheekMakeupCategoryHandler = async (req: Request, res: Response,
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {
@@ -180,8 +181,8 @@ export const getCheekMakeupSingleCategoryHandler = async (req: Request, res: Res
 
     res.status(200).json({
       success: true,
-      total: category.length,
-      category,
+      total: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
+      category
     });
   } catch (error) {
     console.log("getCheekMakeupSingleCategoryHandler", error);
@@ -196,7 +197,8 @@ export const getLipsMakeupCategoryHandler = async (req: Request, res: Response, 
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {
@@ -213,8 +215,8 @@ export const getLipsMakeupSingleCategoryHandler = async (req: Request, res: Resp
 
     res.status(200).json({
       success: true,
-      total: category.length,
-      category,
+      total: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
+      category
     });
   } catch (error) {
     console.log("getLipsMakeupSingleCategoryHandler", error);
@@ -229,7 +231,8 @@ export const getEyesMakeupCategoryHandler = async (req: Request, res: Response, 
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {
@@ -246,8 +249,8 @@ export const getEyesMakeupSingleCategoryHandler = async (req: Request, res: Resp
 
     res.status(200).json({
       success: true,
-      total: category.length,
-      category,
+      total: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
+      category
     });
   } catch (error) {
     console.log("getEyesMakeupSingleCategoryHandler", error);
@@ -262,7 +265,8 @@ export const getFeaturedMakeupCategoryHandler = async (req: Request, res: Respon
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {
@@ -278,7 +282,8 @@ export const getSkinCareCategoryHandler = async (req: Request, res: Response, ne
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {
@@ -297,8 +302,8 @@ export const getSkinCareSingleCategoryHandler = async (req: Request, res: Respon
 
     res.status(200).json({
       success: true,
-      total: category.length,
-      category,
+      total: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
+      category
     });
   } catch (error) {
     console.log("getSkinCareSingleCategoryHandler", error);
@@ -313,7 +318,8 @@ export const getSkinConditionCategoryHandler = async (req: Request, res: Respons
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {
@@ -330,8 +336,8 @@ export const getSkinConditionSingleCategoryHandler = async (req: Request, res: R
 
     res.status(200).json({
       success: true,
-      total: category.length,
-      category,
+      total: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
+      category
     });
   } catch (error) {
     console.log("getSkinCareSingleCategoryHandler", error);
@@ -346,7 +352,8 @@ export const getFeaturedSkincareCategoryHandler = async (req: Request, res: Resp
 
     res.status(200).json({
       success: true,
-      total: category.length,
+      categories: category.length,
+      Products: category.reduce((acc, item) => acc + item.products?.length, 0), // Sum up the lengths
       category,
     });
   } catch (error) {

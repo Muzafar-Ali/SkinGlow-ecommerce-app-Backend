@@ -1,8 +1,10 @@
-import { CheekMakeupCategory } from "../models/categories/cheekMakeup.model";
-import { EyesMakeupCategory } from "../models/categories/eyesMakeup.model";
-// import { FeaturedCategory } from "../models/categories/featuredMakeup.model";
-import { LipsMakeupCategory } from "../models/categories/lipsMakeup.model";
 import ErrorHandler from "../utils/errorClass";
+
+type GetCategoryType = {
+  name: string;
+  slug: string;
+  products: any[];
+}[];
 
 export const createCategory = async (name: string, categoryModel: any) => {
   try {
@@ -24,10 +26,10 @@ export const createCategory = async (name: string, categoryModel: any) => {
 
 export const getCategory = async (categoryModel: any, categoryName?: string) => {
   try {
-    let category;
+    let category: GetCategoryType | null = null;
 
     if (categoryName) category = await categoryModel.find({slug: categoryName}).populate("products");
-    if (!categoryName) category = await categoryModel.find();
+    if (!categoryName) category = await categoryModel.find().populate("products");
 
     if (!category) throw new ErrorHandler(404, "Category not found");
 
@@ -36,16 +38,3 @@ export const getCategory = async (categoryModel: any, categoryName?: string) => 
     throw error;
   }
 };
-
-// export const findCategoryIdBySlug = async (slug: string) => {
-//   try {
-//     const category = await FeaturedCategory.findOne({ slug });
-//     if (category) {
-//       return category._id;
-//     } else {
-//       throw new Error("Category not found");
-//     }
-//   } catch (error) {
-//     throw error;
-//   }
-// };
