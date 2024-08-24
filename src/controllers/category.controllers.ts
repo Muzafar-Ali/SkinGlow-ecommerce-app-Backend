@@ -296,8 +296,7 @@ export const getSkinCareCategoryHandler = async (req: Request, res: Response, ne
 export const getSkinCareSingleCategoryHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { slug } = req.params
-    console.log('slug', slug);
-    
+   
     const category = await getCategory(SkincareCategory, slug);
 
     res.status(200).json({
