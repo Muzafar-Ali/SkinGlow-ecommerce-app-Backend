@@ -21,7 +21,7 @@ The app is deployed with:
 * Algolia
 * Zustand
   
-## Backend (SkinGlow Backend)
+#### Backend (SkinGlow Backend)
 * Node.js
 * Express.js
 * MongoDB
